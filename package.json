@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/JackTNorris/nwa-foodbank-check-in-system/issues"
   },
-  "homepage": "https://github.com/JackTNorris/nwa-foodbank-check-in-system#readme"
+  "homepage": "https://github.com/JackTNorris/nwa-foodbank-check-in-system#readme",
+  "dependencies": {
+    "twilio": "^3.83.1"
+  },
+  "type": "module"
 }

@@ -1,0 +1,19 @@
+{
+  "name": "nwa-foodbank-check-in-system",
+  "version": "1.0.0",
+  "description": "food bank check in system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JackTNorris/nwa-foodbank-check-in-system.git"
+  },
+  "author": "JackTNorris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JackTNorris/nwa-foodbank-check-in-system/issues"
+  },
+  "homepage": "https://github.com/JackTNorris/nwa-foodbank-check-in-system#readme"
+}

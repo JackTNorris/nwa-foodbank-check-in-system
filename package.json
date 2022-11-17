@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JackTNorris/nwa-foodbank-check-in-system#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "twilio": "^3.83.1"
   },
   "type": "module"

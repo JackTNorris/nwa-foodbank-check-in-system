@@ -1,4 +1,6 @@
-/*
+'use strict';
+
+import express from 'express'
 import dotenv from 'dotenv'
 import twilioClientCreator from 'twilio'
 
@@ -10,7 +12,14 @@ const message = "Mason demo"
 
 const numbers = ['5555555555', '8888888888', '7777777777']
 
-client.messages
+
+// Constants
+const PORT = 8080;
+
+// App
+const app = express();
+app.get('/', async (req, res) => {
+  await client.messages
   .create({
      body: message,
      from: '+19452077377',
@@ -18,18 +27,6 @@ client.messages
    })
   .then(message => console.log("I sent your message"))
   .catch(error => console.log(error.message))
-*/
-
-'use strict';
-
-import express from 'express'
-
-// Constants
-const PORT = 8080;
-
-// App
-const app = express();
-app.get('/', (req, res) => {
   res.send('Hello World');
 });
 

@@ -10,7 +10,7 @@ dotenv.config();
 
 const client = twilioClientCreator(process.env.SID, process.env.AUTH_TOKEN)
 
-const message = "Mason demo"
+const message = "Hello! The NWA Mobile Food Bank will be distributing food at McMillon Innovation Studio on 12/18 @ 9 AM. If you / someone on your behalf plan on picking up food, please respond “Y”. Otherwise, please respond “N”"
 
 const numbers = []
 
@@ -36,6 +36,7 @@ app.get('/sendMessage', async (req, res) => {
   }
   res.send('sent messages');
 });
+
 
 app.post('/receiveMessage', (req, res) => {
   const twiml = new MessagingResponse();

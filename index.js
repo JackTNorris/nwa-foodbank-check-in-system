@@ -23,32 +23,35 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/sendMessage', async (req, res) => {
-  await client.messages
-  .create({
-     body: message,
-     from: '+19452077377',
-     to: '+13343338745'
-   })
-  .then(message => console.log("I sent your message"))
-  .catch(error => console.log(error.message))
-  res.send('Hello World');
+  for(let i = 0; i < numbers.length; i++)
+  {
+    await client.messages
+    .create({
+       body: message,
+       from: '+19452077377',
+       to: numbers[i]
+     })
+    .then(message => console.log("I sent your message"))
+    .catch(error => console.log(error.message))
+  }
+  res.send('sent messages');
 });
 
 app.post('/receiveMessage', (req, res) => {
   const twiml = new MessagingResponse();
-  console.log("Got message from: " + req.body.From)
-  twiml.message('Thank you for opting in! Your number is recorded as: ' + req.body.From)
-  /*
-  if (req.body.Body == 'hello') {
-    twiml.message('Hi!');
-  } else if (req.body.Body == 'bye') {
-    twiml.message('Goodbye');
+  const number = req.body.From;
+  const sentMessage = req.body.Body.toLowerCase();
+  if (sentMessage == 'yes' || sentMessage == 'y') {
+    twiml.message('Recorded yes');
+  } else if (sentMessage == 'no' || sentMessage == 'n') {
+    twiml.message('Recorded no');
   } else {
-    twiml.message(
-      'No Body param match, Twilio sends this in the request to your server.'
-    );
+    twiml.message('Thank you for opting in! Your number is recorded as: ' + req.body.From);
   }
-  */
+  if(numbers.indexOf(number) < 0)
+  {
+    numbers.push(number)
+  }
   res.type('text/xml').send(twiml.toString());
 });
 

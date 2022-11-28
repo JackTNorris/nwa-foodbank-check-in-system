@@ -1,3 +1,4 @@
+/*
 import dotenv from 'dotenv'
 import twilioClientCreator from 'twilio'
 
@@ -17,5 +18,22 @@ client.messages
    })
   .then(message => console.log("I sent your message"))
   .catch(error => console.log(error.message))
+*/
 
+'use strict';
 
+import express from 'express'
+
+// Constants
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+// App
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello World');
+});
+
+app.listen(PORT, HOST, () => {
+  console.log(`Running on http://${HOST}:${PORT}`);
+});

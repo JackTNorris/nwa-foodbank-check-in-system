@@ -34,10 +34,10 @@ app.get('/sendMessage', async (req, res) => {
   res.send('Hello World');
 });
 
-app.post('/recieveMessage', (req, res) => {
+app.post('/receiveMessage', (req, res) => {
   const twiml = new MessagingResponse();
   console.log("Got message from: " + req.body.From)
-  twiml.message('Thank you for opting in!')
+  twiml.message('Thank you for opting in! Your number is recorded as: ' + req.body.From)
   /*
   if (req.body.Body == 'hello') {
     twiml.message('Hi!');

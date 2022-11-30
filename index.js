@@ -1,10 +1,21 @@
 'use strict';
-
 import express from 'express'
 import dotenv from 'dotenv'
 import twilioClientCreator from 'twilio'
 import bodyParser from 'body-parser'
 const { MessagingResponse } = twilioClientCreator.twiml
+
+import firebase from 'firebase-admin'
+import { applicationDefault } from 'firebase-admin/app';
+
+
+firebase.initializeApp({
+  credential: applicationDefault(),
+  databaseURL: 'https://mcmillon-ox-project-default-rtdb.firebaseio.com/'
+});
+
+const database = firebase.database()
+
 
 dotenv.config();
 
@@ -43,10 +54,16 @@ app.post('/receiveMessage', (req, res) => {
   const number = req.body.From;
   const sentMessage = req.body.Body.toLowerCase();
   if (sentMessage == 'yes' || sentMessage == 'y') {
-    twiml.message('Recorded yes');
+    const ref = database.ref('/nwa-food-bank/mcmillon/users')
+    ref.once('value').then(snapshot => {
+      const data = snapshot.val();
+      ref.update({checked_in: data.checked_in ? data.checked_in + 1 : 1}, () => {});
+      console.log(data);
+    });
+    twiml.message('Thanks! We will see you there then');
   } else if (sentMessage == 'no' || sentMessage == 'n') {
-    twiml.message('Recorded no');
-  } else {
+    twiml.message('Thanks! We are here if you need us');
+  } else if(numbers.indexOf(number) < 0) {
     twiml.message('Thank you for opting in! Your number is recorded as: ' + req.body.From);
   }
   if(numbers.indexOf(number) < 0)

@@ -64,7 +64,7 @@ app.post('/receiveMessage', (req, res) => {
   } else if (sentMessage == 'no' || sentMessage == 'n') {
     twiml.message('Thanks! We are here if you need us');
   } else if(numbers.indexOf(number) < 0) {
-    twiml.message('Thank you for opting in! Your number is recorded as: ' + req.body.From);
+    twiml.message('Thank you for opting in to the NWA Mobile Food Bank check-in system! Your number is recorded as: ' + req.body.From);
   }
   if(numbers.indexOf(number) < 0)
   {
